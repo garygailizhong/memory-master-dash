@@ -13,64 +13,69 @@ export const GameStatus = ({ phase, level, score, sequenceLength, currentIndex }
   const getStatusText = () => {
     switch (phase) {
       case 'showing':
-        return '👀 记住顺序！';
+        return { emoji: '👀', text: '记住顺序！', color: 'text-primary' };
       case 'input':
-        return '👆 轮到你了！';
+        return { emoji: '👆', text: '轮到你了！', color: 'text-game-cyan' };
       case 'success':
-        return '🎉 太棒了！';
+        return { emoji: '🎉', text: '太棒了！', color: 'text-success' };
       case 'failure':
-        return '😅 再试一次！';
+        return { emoji: '😅', text: '再试一次！', color: 'text-destructive' };
       default:
-        return '准备开始';
+        return { emoji: '🎮', text: '准备开始', color: 'text-foreground' };
     }
   };
 
+  const status = getStatusText();
+
   return (
-    <div className="text-center space-y-3 animate-fade-up">
-      <div className="flex justify-center gap-6 text-lg font-semibold">
-        <div className="bg-card rounded-xl px-4 py-2 shadow-md">
-          <span className="text-muted-foreground">关卡</span>
-          <span className="ml-2 text-primary text-xl">{level}</span>
+    <div className="text-center space-y-4 animate-fade-up">
+      {/* 分数和关卡 */}
+      <div className="flex justify-center gap-4">
+        <div className="bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl px-5 py-3 shadow-lg border-2 border-primary/20">
+          <div className="text-xs text-muted-foreground font-medium">关卡</div>
+          <div className="text-2xl font-extrabold text-primary">{level}</div>
         </div>
-        <div className="bg-card rounded-xl px-4 py-2 shadow-md">
-          <span className="text-muted-foreground">分数</span>
-          <span className="ml-2 text-accent text-xl">{score}</span>
+        <div className="bg-gradient-to-br from-accent/20 to-accent/10 rounded-2xl px-5 py-3 shadow-lg border-2 border-accent/20">
+          <div className="text-xs text-muted-foreground font-medium">分数</div>
+          <div className="text-2xl font-extrabold text-accent">{score}</div>
         </div>
       </div>
       
+      {/* 状态提示 */}
       <div className={cn(
-        'text-2xl font-bold py-3',
-        phase === 'success' && 'text-success animate-celebrate',
-        phase === 'failure' && 'text-destructive animate-shake',
+        'text-2xl sm:text-3xl font-extrabold py-4 flex items-center justify-center gap-3',
+        status.color,
+        phase === 'success' && 'animate-celebrate',
+        phase === 'failure' && 'animate-shake',
       )}>
-        {getStatusText()}
+        <span className="text-4xl">{status.emoji}</span>
+        <span>{status.text}</span>
       </div>
 
-      {phase === 'showing' && (
-        <div className="flex justify-center gap-1">
-          {Array.from({ length: sequenceLength }, (_, i) => (
-            <div
-              key={i}
-              className={cn(
-                'w-3 h-3 rounded-full transition-all duration-200',
-                i <= currentIndex ? 'bg-primary scale-110' : 'bg-muted'
-              )}
-            />
-          ))}
-        </div>
-      )}
-
-      {phase === 'input' && (
-        <div className="flex justify-center gap-1">
-          {Array.from({ length: sequenceLength }, (_, i) => (
-            <div
-              key={i}
-              className={cn(
-                'w-3 h-3 rounded-full transition-all duration-200',
-                i < currentIndex ? 'bg-success' : 'bg-muted'
-              )}
-            />
-          ))}
+      {/* 进度指示器 */}
+      {(phase === 'showing' || phase === 'input') && (
+        <div className="flex justify-center gap-2">
+          {Array.from({ length: sequenceLength }, (_, i) => {
+            const isCompleted = phase === 'showing' 
+              ? i <= currentIndex 
+              : i < currentIndex;
+            const isCurrent = phase === 'showing' && i === currentIndex;
+            
+            return (
+              <div
+                key={i}
+                className={cn(
+                  'w-4 h-4 rounded-full transition-all duration-300 shadow-md',
+                  isCompleted 
+                    ? phase === 'showing' 
+                      ? 'bg-primary scale-110' 
+                      : 'bg-success scale-110'
+                    : 'bg-muted/50',
+                  isCurrent && 'animate-pulse ring-2 ring-primary ring-offset-2'
+                )}
+              />
+            );
+          })}
         </div>
       )}
     </div>

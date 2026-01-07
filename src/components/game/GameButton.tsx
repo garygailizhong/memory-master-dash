@@ -17,18 +17,28 @@ export const GameButton = ({ index, mode, isHighlighted, isDisabled, onClick }: 
       onClick={onClick}
       disabled={isDisabled}
       className={cn(
-        'w-16 h-16 sm:w-20 sm:h-20 rounded-2xl font-bold text-2xl sm:text-3xl',
+        'w-18 h-18 sm:w-20 sm:h-20 rounded-2xl font-extrabold text-2xl sm:text-3xl',
         'transition-all duration-200 transform',
         'shadow-lg hover:shadow-xl',
-        'focus:outline-none focus:ring-4 focus:ring-primary/50',
-        'disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none',
-        mode === 'color' ? color.class : 'bg-card border-2 border-border',
-        mode === 'color' ? 'text-white' : 'text-foreground',
-        isHighlighted && 'animate-highlight scale-110 ring-4 ring-accent',
-        !isDisabled && !isHighlighted && 'hover:scale-105 active:scale-95',
+        'focus:outline-none focus:ring-4 focus:ring-accent/50',
+        'disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none',
+        'border-4',
+        mode === 'color' 
+          ? `${color.class} border-white/30 text-white` 
+          : 'bg-gradient-to-br from-card to-muted border-primary/20 text-foreground',
+        isHighlighted && 'animate-highlight scale-115 ring-4 ring-accent shadow-2xl',
+        !isDisabled && !isHighlighted && 'hover:scale-110 active:scale-95 cursor-pointer',
       )}
+      style={{
+        width: '4.5rem',
+        height: '4.5rem',
+      }}
     >
-      {mode === 'number' ? index + 1 : ''}
+      {mode === 'number' ? (
+        <span className="drop-shadow-md">{index + 1}</span>
+      ) : (
+        <span className="text-xl opacity-80">●</span>
+      )}
     </button>
   );
 };

@@ -84,11 +84,7 @@ const Index = () => {
     if (state.phase !== 'input') return;
     
     sound.playClick();
-    const result = handleInput(index);
-    
-    if (!result.correct) {
-      // 失败会自动在 useEffect 中处理
-    }
+    handleInput(index);
   }, [state.phase, handleInput, sound]);
 
   const handlePlayAgain = useCallback(() => {
@@ -103,8 +99,18 @@ const Index = () => {
   }, [resetGame]);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 flex flex-col items-center justify-center p-4 relative overflow-hidden">
+      {/* 背景装饰 */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-10 text-6xl opacity-10 animate-bounce">🌟</div>
+        <div className="absolute top-20 right-20 text-5xl opacity-10 animate-pulse">✨</div>
+        <div className="absolute bottom-20 left-20 text-4xl opacity-10 animate-bounce" style={{ animationDelay: '1s' }}>⭐</div>
+        <div className="absolute bottom-10 right-10 text-5xl opacity-10 animate-pulse" style={{ animationDelay: '0.5s' }}>💫</div>
+        <div className="absolute top-1/2 left-5 text-3xl opacity-5 animate-bounce" style={{ animationDelay: '0.7s' }}>🎮</div>
+        <div className="absolute top-1/3 right-5 text-3xl opacity-5 animate-pulse" style={{ animationDelay: '0.3s' }}>🧠</div>
+      </div>
+
+      <div className="w-full max-w-md relative z-10">
         {screen === 'menu' && (
           <MainMenu
             settings={settings}
@@ -116,18 +122,22 @@ const Index = () => {
         )}
 
         {screen === 'settings' && (
-          <SettingsPanel
-            settings={settings}
-            onUpdateSettings={updateSettings}
-            onClose={() => setScreen('menu')}
-          />
+          <div className="bg-card/80 backdrop-blur-sm rounded-3xl shadow-2xl border-2 border-border/50">
+            <SettingsPanel
+              settings={settings}
+              onUpdateSettings={updateSettings}
+              onClose={() => setScreen('menu')}
+            />
+          </div>
         )}
 
         {screen === 'leaderboard' && (
-          <Leaderboard
-            scores={getAllHighScores()}
-            onClose={() => setScreen('menu')}
-          />
+          <div className="bg-card/80 backdrop-blur-sm rounded-3xl shadow-2xl border-2 border-border/50">
+            <Leaderboard
+              scores={getAllHighScores()}
+              onClose={() => setScreen('menu')}
+            />
+          </div>
         )}
 
         {screen === 'game' && (
@@ -137,9 +147,9 @@ const Index = () => {
               <Button
                 variant="ghost"
                 onClick={handleBackToMenu}
-                className="rounded-xl"
+                className="rounded-xl font-semibold hover:bg-card/50"
               >
-                ← 返回
+                <span className="mr-2">←</span> 返回
               </Button>
             </div>
 
@@ -170,6 +180,11 @@ const Index = () => {
                   isInputPhase={state.phase === 'input'}
                   onButtonClick={handleButtonClick}
                 />
+
+                {/* 模式提示 */}
+                <div className="text-sm text-muted-foreground/70 mt-2">
+                  {settings.mode === 'number' ? '🔢 数字模式' : '🎨 颜色模式'}
+                </div>
               </>
             )}
           </div>
