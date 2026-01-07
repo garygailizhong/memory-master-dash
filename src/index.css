@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,48 +10,48 @@
 @layer base {
   :root {
     /* 糖果色系背景 */
-    --background: 45 100% 96%;
-    --foreground: 280 60% 25%;
+    --background: 240 4% 95%;
+    --foreground: 240 5% 10%;
 
     /* 卡片 - 柔和奶油色 */
-    --card: 0 0% 100%;
-    --card-foreground: 280 60% 25%;
+    --card: 0 0% 98%;
+    --card-foreground: 240 5% 10%;
 
     /* 弹出层 */
-    --popover: 0 0% 100%;
-    --popover-foreground: 280 60% 25%;
+    --popover: 240 5% 90%;
+    --popover-foreground: 240 5% 10%;
 
     /* 主色 - 活力粉紫 */
-    --primary: 280 70% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 333 71% 50%;
+    --primary-foreground: 327 73% 97%;
 
     /* 次要色 - 薄荷绿 */
-    --secondary: 160 60% 85%;
-    --secondary-foreground: 160 60% 25%;
+    --secondary: 240 5% 33%;
+    --secondary-foreground: 0 0% 98%;
 
     /* 柔和灰 */
-    --muted: 45 30% 90%;
-    --muted-foreground: 280 20% 45%;
+    --muted: 240 4% 83%;
+    --muted-foreground: 240 5% 10%;
 
     /* 强调色 - 阳光橙 */
-    --accent: 35 100% 65%;
-    --accent-foreground: 35 100% 20%;
+    --accent: 355 100% 97%;
+    --accent-foreground: 349 89% 60%;
 
     /* 错误色 - 柔和红 */
-    --destructive: 0 70% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 85% 97%;
 
     /* 成功色 - 薄荷绿 */
     --success: 145 65% 50%;
     --success-foreground: 0 0% 100%;
 
     /* 边框和输入 */
-    --border: 280 30% 85%;
-    --input: 280 30% 90%;
-    --ring: 280 70% 60%;
+    --border: 240 4% 83%;
+    --input: 240 4% 83%;
+    --ring: 333 71% 50%;
 
     /* 圆角 - 更圆润 */
-    --radius: 1rem;
+    --radius: 1.5rem;
 
     /* 游戏专用颜色 */
     --game-red: 0 80% 65%;
@@ -59,39 +62,65 @@
     --game-orange: 25 100% 60%;
     --game-pink: 330 80% 70%;
     --game-cyan: 185 80% 50%;
+    --chart-1: 328 85% 70%;
+    --chart-2: 351 94% 71%;
+    --chart-3: 327 87% 81%;
+    --chart-4: 352 95% 81%;
+    --chart-5: 240 3% 46%;
+    --sidebar: 0 0% 98%;
+    --sidebar-foreground: 240 5% 10%;
+    --sidebar-primary: 333 71% 50%;
+    --sidebar-primary-foreground: 327 73% 97%;
+    --sidebar-accent: 240 5% 33%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 4% 83%;
+    --sidebar-ring: 333 71% 50%;
+    --font-sans: 'Poppins', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    --font-serif: 'Merriweather', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+    --tracking-normal: 0em;
+    --spacing: 0.25rem;
   }
 
   .dark {
-    --background: 280 30% 10%;
-    --foreground: 45 100% 95%;
+    --background: 240 5% 10%;
+    --foreground: 0 0% 98%;
 
-    --card: 280 30% 15%;
-    --card-foreground: 45 100% 95%;
+    --card: 240 3% 15%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 280 30% 15%;
-    --popover-foreground: 45 100% 95%;
+    --popover: 240 5% 26%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 280 70% 65%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 328 85% 70%;
+    --primary-foreground: 336 83% 17%;
 
-    --secondary: 160 40% 25%;
-    --secondary-foreground: 160 60% 90%;
+    --secondary: 240 3% 46%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 280 20% 20%;
-    --muted-foreground: 280 20% 70%;
+    --muted: 240 3% 46%;
+    --muted-foreground: 0 0% 98%;
 
-    --accent: 35 100% 60%;
-    --accent-foreground: 35 100% 95%;
+    --accent: 343 87% 15%;
+    --accent-foreground: 351 94% 71%;
 
-    --destructive: 0 60% 50%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 85% 97%;
 
     --success: 145 60% 45%;
     --success-foreground: 0 0% 100%;
 
-    --border: 280 20% 25%;
-    --input: 280 20% 25%;
-    --ring: 280 70% 65%;
+    --border: 240 5% 33%;
+    --input: 240 5% 33%;
+    --ring: 328 85% 70%;
 
     --game-red: 0 75% 55%;
     --game-blue: 210 85% 55%;
@@ -101,6 +130,27 @@
     --game-orange: 25 95% 55%;
     --game-pink: 330 75% 60%;
     --game-cyan: 185 75% 45%;
+    --chart-1: 327 87% 81%;
+    --chart-2: 352 95% 81%;
+    --chart-3: 328 85% 70%;
+    --chart-4: 351 94% 71%;
+    --chart-5: 240 5% 33%;
+    --sidebar: 240 3% 15%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 328 85% 70%;
+    --sidebar-primary-foreground: 336 83% 17%;
+    --sidebar-accent: 351 94% 71%;
+    --sidebar-accent-foreground: 343 87% 15%;
+    --sidebar-border: 240 5% 33%;
+    --sidebar-ring: 328 85% 70%;
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
   }
 }
 
